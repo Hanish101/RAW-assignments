@@ -1,0 +1,71 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container py-4">
+  <% if(todo) { %>
+    <div class="container">
+      <div class="task-container">
+        <div class="task-title">Another task</div>
+        <div class="task-label">Title:</div>
+        <div class="task-description" id="title"><%=todo.title%></div>
+        <br>
+        <div class="task-label">Description:</div>
+        <div class="task-description"><%=todo.description%></div>
+        <div class="task-progress">
+          <span>Progress:
+            <span class="<%=todo.completed ? 'completed' : 'not-completed' %>">
+              <%=todo.completed ? 'Done' : 'Not Done' %>
+            </span>
+          </span>
+        </div>
+        <br>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary">
+            <a style="text-decoration: none; color: inherit;" href="/todos/update/<%= todo.title %>">Update</a>
+          </button>
+          <button type="button" class="btn btn-danger" onclick="deleteTask()">Delete</button>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<script>
+  deleteTask = () => {
+    const title = document.getElementById("title").innerHTML;
+    console.log(title);
+
+    let token = localStorage.getItem("access_token")
+
+    fetch(`/api/todos/${title}`, {
+      method: "DELETE",
+      headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": token
+      }
+    })
+    .then((response) => {
+      console.log("---token response--- ", response.status)
+      
+        return response.json()
+            .then((data) => {
+                if (data.redirect) {
+                    alert("You are not logged in, redirecting to login page.Del")
+                    window.location.href = "/auth/login"
+                    return
+                }
+                if (data.error) {
+                    const errorString = JSON.stringify(data.error)
+                    alert(errorString)
+                } else {
+                    alert(data.message)
+                }
+            })
+    })
+    .catch((error) => alert(error))
+  };
+</script>
+
+          
+
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs") %>
+
+
+<div class="container mt-3 border border-secondary rounded">
+    <div class="row">
+      <div class="col">
+        <h3 class="my-2">Login</h3>
+        <form id="loginSubmitForm">
+          <div class="mb-3">
+            <label class="form-label" for="loginEmail">Email:</label>
+            <input class="form-control" type="text" name="email" id="loginEmail" placeholder="myname2orgname.com" required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="loginPassword">Password:</label>
+            <input class="form-control" type="password" name="password" id="loginPassword" placeholder="Enter your password" required/>
+          </div>
+          <div class="text-left">
+            <input class="btn btn-primary mt-3" type="submit" value="Login" />
+          </div>
+          <hr />
+        </form>
+      </div>
+    </div>
+  </div> 
+
+    <script>
+        document.getElementById("loginSubmitForm").addEventListener("submit", function (event) {
+          event.preventDefault()
+
+          const email = document.getElementById("loginEmail").value
+          const password = document.getElementById("loginPassword").value
+
+          const body = {
+              email,
+              password
+          }
+
+          console.log(body)
+
+          fetch(
+              "/api/auth/login",
+              {
+                  method: "POST",
+                  headers: {
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(body)
+              }
+              )
+              .then((response) => response.json())
+              .then((data) => {
+                  if(data.error) {
+                      const errorString = JSON.stringify(data.error)
+                      alert(errorString)
+                  } else {
+                      console.log("------------------- ", data)
+                      localStorage.setItem("access_token", data.data.access_token)
+                      alert(data.message)
+                  }
+              })
+              .catch((error) => alert(error))
+        })
+    </script>
+
+
+<%- include("partials/footer.ejs") %>

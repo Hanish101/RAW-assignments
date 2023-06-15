@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <title>Todo App | <%= title %> -->
+  <title>Todo App
+</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+    <style>
+html, body {
+            height: 100%;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Additional styles for sticky footer */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+        }
+        .title-link {
+            color: black;
+            font-weight: bold;
+        }
+
+        .custom-badge {
+            font-size: 1.2rem;
+            color: white;
+        }
+        .task-container {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .task-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .task-description {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .task-status {
+      margin-top: 10px;
+    }
+
+    .completed {
+      color: green;
+    }
+
+    .not-completed {
+      color: red;
+    }
+
+    .task-container {
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+
+    .task-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .task-label {
+      font-weight: bold;
+      border-bottom: 1px solid #ced4da;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+    }
+
+    .task-description {
+      font-size: 16px;
+      margin-top: 5px;
+      border: 1px solid #ced4da;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .task-progress {
+      margin-top: 10px;
+    }
+
+    .completed {
+      color: green;
+    }
+
+    .not-completed {
+      color: red;
+    }
+
+    .btn-group {
+      margin-top: 10px;
+    }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Todo App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/todo/create">Create Todo</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>

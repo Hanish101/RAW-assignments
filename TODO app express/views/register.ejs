@@ -1,0 +1,62 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container my-3 py-3 border border-secondary rounded ">
+    <h2>Registration Form</h2>
+    <form id="registerSubmitForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+        
+  <script>
+    document.getElementById("registerSubmitForm").addEventListener("submit", function (event) {
+        event.preventDefault()
+
+        const name = document.getElementById("name").value
+        const email = document.getElementById("email").value
+        const password = document.getElementById("password").value
+
+        const body = {
+            name,
+            email,
+            password
+        }
+
+        console.log(body)
+
+        fetch(
+            "/api/auth/register",
+            {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            }
+            )
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.error) {
+                    const errorString = JSON.stringify(data.error)
+                    alert(errorString)
+                } else {
+                    alert(data.message)
+                }
+            })
+            .catch((error) => alert(error))
+    })
+</script>
+
+<%- include("partials/footer.ejs") %>
