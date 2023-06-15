@@ -6,7 +6,7 @@
 6. Added extra page to show individual todo "task" other than update page
 
 7. create isAuthenticatedPage function to work with page,
-```but throwing some error because while connecting isAuthenticated method to single task page,
+   but throwing some error because while connecting isAuthenticated method to single task page,
    so for now no login required to view single task
 
 
